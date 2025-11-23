@@ -1,0 +1,15 @@
+# Flask and dependencies (required for app.py)
+Flask==3.0.3
+Werkzeug==3.0.6
+Jinja2==3.1.5
+MarkupSafe==2.1.5
+itsdangerous==2.2.0
+click==8.1.7
+blinker==1.8.2
+colorama==0.4.6
+
+# Image processing (for convert_images_to_webp.py)
+Pillow>=10.0.0
+
+# Video processing (for optimize_video_simple.py - optional)
+moviepy>=1.0.3
