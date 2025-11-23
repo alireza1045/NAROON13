@@ -6,7 +6,7 @@ from flask import Flask, send_from_directory, send_file
 from pathlib import Path
 import os
 
-app = Flask(__name__, static_folder='static', static_url_path='')
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 # مسیر دایرکتوری ریشه
 BASE_DIR = Path(__file__).parent

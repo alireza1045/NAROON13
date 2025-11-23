@@ -22,7 +22,7 @@
     <meta property="twitter:title" content="گروه تبلیغات و تابلوسازی NAROON">
     <meta property="twitter:description" content="طراحی و ساخت انواع تابلوهای تبلیغاتی با بهترین کیفیت و قیمت">
     <meta property="twitter:image" content="https://naroonsignmaker.com/images/about-workshop.webp">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="static/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -807,7 +807,7 @@
             let channelLettersImages = [];
             
             // Fetch from gallery-data.json
-            fetch('gallery-data.json')
+            fetch('static/data/gallery-data.json')
                 .then(response => response.json())
                 .then(data => {
                     // Try channel-letters first, then polygon-3d, then any category with images
@@ -910,6 +910,6 @@
         })();
 
     </script>
-    <script src="script.js"></script>
+    <script src="static/js/script.js"></script>
 </body>
 </html>

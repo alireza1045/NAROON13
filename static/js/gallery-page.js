@@ -1,4 +1,4 @@
-const galleryManifestUrl = 'static/data/gallery-data.json';
+const galleryManifestUrl = 'gallery-data.json';
 const GALLERY_IMAGE_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 const MAX_IMAGE_LOAD_RETRIES = 3;
 

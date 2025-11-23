@@ -22,7 +22,7 @@
     <meta property="twitter:title" content="محصولات ERRORR | NAROON">
     <meta property="twitter:description" content="مشاهده محصولات ERRORR">
     <meta property="twitter:image" content="https://naroonsignmaker.com/images/about-workshop.webp">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="static/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -173,7 +173,7 @@
             <button class="errorr-video-modal-close" aria-label="بستن">
                 <i class="fas fa-times"></i>
             </button>
-            <video id="errorrVideoPlayer" controls autoplay>
+            <video id="errorrVideoPlayer" controls>
                 <source src="videos/IMG_4076_1_1.mp4" type="video/mp4">
                 مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
             </video>
@@ -216,8 +216,8 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="ERRORR.js"></script>
+    <script src="static/js/script.js"></script>
+    <script src="static/js/ERRORR.js"></script>
     <script>
         // ERRORR Video Modal
         document.addEventListener('DOMContentLoaded', function() {
@@ -230,7 +230,10 @@
                 // باز کردن modal با کلیک روی باکس
                 errorrBox.addEventListener('click', function() {
                     errorrModal.classList.add('active');
-                    errorrVideo.play();
+                    // ویدیو فقط با کلیک کاربر پخش می‌شود (autoplay حذف شده)
+                    errorrVideo.play().catch(() => {
+                        // اگر autoplay block شده باشد، کاربر باید دستی پخش کند
+                    });
                     document.body.style.overflow = 'hidden';
                 });
                 

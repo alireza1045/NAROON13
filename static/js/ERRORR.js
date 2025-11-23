@@ -26,7 +26,7 @@ function getFileType(filename) {
 async function loadErrorrMediaList() {
     try {
         // اگر فایل JSON وجود دارد، از آن استفاده کن
-        const response = await fetch('static/data/errorr-media.json');
+        const response = await fetch('errorr-media.json');
         if (response.ok) {
             const data = await response.json();
             errorrMediaFiles = data.files || [];
