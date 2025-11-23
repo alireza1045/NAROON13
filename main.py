@@ -9,10 +9,11 @@ import sys
 from pathlib import Path
 
 # تنظیم پورت از متغیر محیطی یا استفاده از پورت پیش‌فرض (مطابق liara.json)
-PORT = int(os.environ.get('PORT', 3000))
+PORT = int(os.environ.get('PORT', 8000))
 
-# مسیر دایرکتوری فعلی
-DIRECTORY = Path(__file__).parent
+# مسیر دایرکتوری static برای فایل‌های استاتیک
+STATIC_DIR = Path(__file__).parent / "static"
+DIRECTORY = STATIC_DIR if STATIC_DIR.exists() else Path(__file__).parent
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     """Handler سفارشی برای مدیریت درخواست‌ها"""
