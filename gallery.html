@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گالری نمونه کارها | گروه تبلیغات و تابلوسازی NAROON</title>
+    <meta name="description" content="گالری نمونه کارهای گروه تبلیغات و تابلوسازی NAROON - مشاهده پروژه‌های موفق در زمینه تابلوهای تبلیغاتی، حروف چنلیوم، پلیگان 3D، تابلو LED و انواع تابلوهای تبلیغاتی.">
+    <meta name="keywords" content="گالری نمونه کار, تابلو تبلیغاتی, حروف چنلیوم, پلیگان 3D, تابلو LED, نئون, تابلو روان, تابلوسازی, تبلیغات">
+    <meta name="author" content="NAROON">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://naroonsignmaker.com/gallery.html">
+    <meta property="og:title" content="گالری نمونه کارها | NAROON">
+    <meta property="og:description" content="مشاهده پروژه‌های موفق در زمینه تابلوهای تبلیغاتی">
+    <meta property="og:image" content="https://naroonsignmaker.com/images/about-workshop.webp">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://naroonsignmaker.com/gallery.html">
+    <meta property="twitter:title" content="گالری نمونه کارها | NAROON">
+    <meta property="twitter:description" content="مشاهده پروژه‌های موفق در زمینه تابلوهای تبلیغاتی">
+    <meta property="twitter:image" content="https://naroonsignmaker.com/images/about-workshop.webp">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .category-header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+        }
+        .scroll-down-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: white;
+            animation: scrollDownBounce 2s ease infinite;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        .scroll-down-indicator:hover {
+            opacity: 1;
+        }
+        @keyframes scrollDownBounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+        .category-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .category-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #2563eb;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background: #f3f4f6;
+            transform: translateX(-5px);
+        }
+        .category-gallery {
+            padding: 4rem 0;
+        }
+        .gallery-description {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 25px 70px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            line-height: 1.9;
+        }
+        .gallery-description h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1d4ed8;
+        }
+        .gallery-description h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+        .gallery-description p {
+            margin-bottom: 1rem;
+            color: #475569;
+        }
+        .gallery-description ul {
+            padding-right: 1.5rem;
+            margin-bottom: 1rem;
+            color: #42526e;
+        }
+        .gallery-description li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        .gallery-description li::marker {
+            color: #2563eb;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #64748b;
+        }
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+        }
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #475569;
+        }
+        .category-gallery {
+            background: #f8fafc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Header (Sticky) -->
+    <div class="mobile-header">
+        <h2 data-fa="گروه تبلیغات و تابلوسازی NAROON" data-en="NAROON Advertising & Sign Making Group">گروه تبلیغات و تابلوسازی NAROON</h2>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" id="navLogo">
+                <div class="nav-logo-bg" id="navLogoBg"></div>
+                <div class="nav-logo-core">
+                    <div class="nav-logo-labels">
+                        <span class="nav-logo-title">NAROON</span>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link" data-fa="خانه" data-en="Home">خانه</a>
+                </li>
+                <li class="nav-item nav-item-dropdown">
+                    <a href="index.html#services" class="nav-link dropdown-trigger" data-fa="لیست دسته بندی ها" data-en="Categories">
+                        <span>لیست دسته بندی ها</span>
+                        <i class="fas fa-angle-down"></i>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="gallery.html?category=exhibition" class="nav-dropdown-link" data-fa="کارهای نمایشگاهی" data-en="Exhibition Works">کارهای نمایشگاهی</a>
+                        <a href="gallery.html?category=polygon-3d" class="nav-dropdown-link" data-fa="سازه های پلیگان 3D" data-en="3D Polygon Structures">سازه های پلیگان 3D</a>
+                        <a href="gallery.html?category=channel-letters" class="nav-dropdown-link" data-fa="حروف چنلیوم" data-en="Channel Letters">حروف چنلیوم</a>
+                        <a href="gallery.html?category=steel-letters" class="nav-dropdown-link" data-fa="حروف استیل" data-en="Steel Letters">حروف استیل</a>
+                        <a href="gallery.html?category=metal-letters" class="nav-dropdown-link" data-fa="حروف فلزی" data-en="Metal Letters">حروف فلزی</a>
+                        <a href="gallery.html?category=plastic-letters" class="nav-dropdown-link" data-fa="حروف پلاستیک" data-en="Plastic Letters">حروف پلاستیک</a>
+                        <a href="gallery.html?category=european" class="nav-dropdown-link" data-fa="تابلو اروپایی" data-en="European Signs">تابلو اروپایی</a>
+                        <a href="gallery.html?category=lightbox" class="nav-dropdown-link" data-fa="لایت باکس و باکس" data-en="Lightbox & Box">لایت باکس و باکس</a>
+                        <a href="gallery.html?category=neon-plex" class="nav-dropdown-link" data-fa="تابلو نئون فلکسی" data-en="Neon Flex Signs">تابلو نئون فلکسی</a>
+                        <a href="gallery.html?category=led" class="nav-dropdown-link" data-fa="تابلوی LED" data-en="LED Signs">تابلوی LED</a>
+                        <a href="gallery.html?category=led-display" class="nav-dropdown-link" data-fa="تلویزیون شهری" data-en="LED Display">تلویزیون شهری</a>
+                        <a href="gallery.html?category=traffic-signs" class="nav-dropdown-link" data-fa="تابلوهای ترافیکی" data-en="Traffic Signs">تابلوهای ترافیکی</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="gallery.html" class="nav-link" data-fa="گالری" data-en="Gallery">گالری</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link" data-fa="درباره ما" data-en="About Us">درباره ما</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#contact" class="nav-link" data-fa="تماس با ما" data-en="Contact">تماس با ما</a>
+                </li>
+                <li class="nav-item nav-lang-mobile">
+                    <button class="lang-btn lang-btn-mobile" aria-label="Change Language" data-lang-toggle>
+                        <span class="lang-active">Fa</span>
+                        <span class="lang-separator">/</span>
+                        <span class="lang-inactive">En</span>
+                    </button>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <div class="language-switcher">
+                    <button class="lang-btn" aria-label="Change Language" data-lang-toggle>
+                        <span class="lang-active">Fa</span>
+                        <span class="lang-separator">/</span>
+                        <span class="lang-inactive">En</span>
+                    </button>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/naroonsignmaker?igsh=Ym51ZnhzYXoxaTYy" target="_blank" class="social-link" aria-label="اینستاگرام" title="اینستاگرام">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://t.me/Alimirza61" target="_blank" class="social-link" aria-label="تلگرام" title="تلگرام">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://wa.me/989109481229" target="_blank" class="social-link" aria-label="واتساپ" title="واتساپ">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:alimirzaei6163@gmail.com" class="social-link" aria-label="ایمیل" title="ایمیل">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Category Header -->
+    <div class="category-header" id="categoryHeader">
+        <div class="container">
+            <a href="index.html#services" class="back-button" data-fa="بازگشت به خدمات" data-en="Back to Services">
+                <i class="fas fa-arrow-right"></i>
+                <span>بازگشت به خدمات</span>
+            </a>
+            <h1 id="categoryTitle" data-fa="گالری نمونه کارها" data-en="Portfolio Gallery">گالری نمونه کارها</h1>
+            <p id="categoryDescription" data-fa="نمونه‌هایی از پروژه‌های موفق ما" data-en="Showcase of our successful projects">نمونه‌هایی از پروژه‌های موفق ما</p>
+            <div style="margin-top: 2rem;">
+                <a href="gallery.html" class="btn btn-secondary" id="viewAllBtn" data-fa="مشاهده همه نمونه کارها" data-en="View All Projects">
+                    مشاهده همه نمونه کارها
+                </a>
+            </div>
+        </div>
+        <div class="scroll-down-indicator" onclick="document.querySelector('.category-gallery').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+
+    <!-- Category Gallery -->
+    <section class="category-gallery">
+        <div class="container">
+            <div class="gallery-description" id="galleryDescriptionBlock">
+                <h2 data-fa="تابلوهای تبلیغاتی برای پیمانکاران غرفه‌ساز" data-en="Advertising Signs for Exhibition Contractors">تابلوهای تبلیغاتی برای پیمانکاران غرفه‌ساز</h2>
+                <p data-fa="با بیش از پنج سال حضور مداوم و تجربه در طراحی و ساخت تابلوهای تبلیغاتی ویژه نمایشگاه‌ها 🌷🌳🌷" data-en="With more than five years of continuous presence and experience in designing and building exhibition-specific advertising signs 🌷🌳🌷">با بیش از پنج سال حضور مداوم و تجربه در طراحی و ساخت تابلوهای تبلیغاتی ویژه نمایشگاه‌ها 🌷🌳🌷</p>
+                <p data-fa="ما افتخار داریم که در خدمت پیمانکاران محترم غرفه‌ساز باشیم. تیم ما با تکیه بر خلاقیت و مهارت‌های فنی، تابلوهایی با طراحی‌های منحصر به فرد و مطابق با نیازهای خاص هر نمایشگاه ارائه می‌دهد. این تابلوها علاوه بر جلب توجه، تاثیرگذاری بالایی در جذب بازدیدکنندگان دارند." data-en="We are honored to support esteemed booth contractors. Relying on creativity and technical expertise, we deliver bespoke signage tailored to each exhibition’s needs—signs that do more than catch the eye; they truly captivate visitors.">ما افتخار داریم که در خدمت پیمانکاران محترم غرفه‌ساز باشیم. تیم ما با تکیه بر خلاقیت و مهارت‌های فنی، تابلوهایی با طراحی‌های منحصر به فرد و مطابق با نیازهای خاص هر نمایشگاه ارائه می‌دهد. این تابلوها علاوه بر جلب توجه، تاثیرگذاری بالایی در جذب بازدیدکنندگان دارند.</p>
+                <p data-fa="در این بخش می‌توانید برخی از نمونه‌کارهای ما را در زمینه طراحی و ساخت تابلوهای تبلیغاتی برای غرفه‌های نمایشگاهی مشاهده کنید. هر کدام از این پروژه‌ها بر اساس نیاز خاص مشتریان و شرایط هر نمایشگاه طراحی شده‌اند تا بهترین نمایش و برندینگ را ارائه دهند." data-en="In this section you can explore selected samples of our advertising signs for exhibition booths. Each project was crafted around the client’s needs and the character of the event to deliver the strongest presentation and branding.">در این بخش می‌توانید برخی از نمونه‌کارهای ما را در زمینه طراحی و ساخت تابلوهای تبلیغاتی برای غرفه‌های نمایشگاهی مشاهده کنید. هر کدام از این پروژه‌ها بر اساس نیاز خاص مشتریان و شرایط هر نمایشگاه طراحی شده‌اند تا بهترین نمایش و برندینگ را ارائه دهند.</p>
+                <h3 data-fa="ویژگی‌های کارهای ما" data-en="Key Features of Our Work">ویژگی‌های کارهای ما</h3>
+                <ul>
+                    <li data-fa="طراحی خلاقانه و جذاب" data-en="Creative and eye-catching designs">طراحی خلاقانه و جذاب</li>
+                    <li data-fa="استفاده از متریال‌های با کیفیت" data-en="Premium, high-quality materials">استفاده از متریال‌های با کیفیت</li>
+                    <li data-fa="قابلیت سفارشی‌سازی بر اساس برند و تم نمایشگاه" data-en="Full customization based on your brand and exhibition theme">قابلیت سفارشی‌سازی بر اساس برند و تم نمایشگاه</li>
+                    <li data-fa="نصب آسان و مقاوم در برابر شرایط محیطی" data-en="Easy installation and resistance to environmental conditions">نصب آسان و مقاوم در برابر شرایط محیطی</li>
+                    <li data-fa="تاثیرگذاری بالا در جذب مخاطب و بازدیدکننده" data-en="High impact for attracting audiences and visitors">تاثیرگذاری بالا در جذب مخاطب و بازدیدکننده</li>
+                </ul>
+                <p data-fa="برای مشاهده نمونه‌کارها و دریافت مشاوره تخصصی، با ما در تماس باشید. تیم ما آماده است تا بهترین راه‌حل‌ها را برای تبلیغات غرفه شما ارائه دهد." data-en="Contact us to review more samples and receive dedicated consultation—our team is ready to craft the best signage solution for your booth.">برای مشاهده نمونه‌کارها و دریافت مشاوره تخصصی، با ما در تماس باشید. تیم ما آماده است تا بهترین راه‌حل‌ها را برای تبلیغات غرفه شما ارائه دهد.</p>
+                <h3 data-fa="طراحی و ساخت تابلوهای تبلیغاتی منحصر به فرد ⚘💻⚘" data-en="Custom Advertising Sign Design & Build ⚘💻⚘">طراحی و ساخت تابلوهای تبلیغاتی منحصر به فرد ⚘💻⚘</h3>
+                <p data-fa="ما در طراحی، ساخت و نصب انواع تابلوهای تبلیغاتی با بالاترین کیفیت و توجه به جزئیات، تخصص داریم. طرح‌های ما به صورت سه‌بعدی و مطابق با نیاز و سلیقه مشتریان طراحی می‌شوند. این طرح‌ها در انواع زمینه‌های پارامتریک و ژئومتریک اجرا می‌شوند و از متریال‌های متنوعی چون چوب، کامپوزیت، کناف و فلز قابل ساخت هستند." data-en="We specialize in designing, building, and installing premium advertising signs with meticulous attention to detail. Our concepts are developed in 3D based on each client’s needs and aesthetic, and can be fabricated in parametric and geometric styles using wood, composite, drywall, metal, and more.">ما در طراحی، ساخت و نصب انواع تابلوهای تبلیغاتی با بالاترین کیفیت و توجه به جزئیات، تخصص داریم. طرح‌های ما به صورت سه‌بعدی و مطابق با نیاز و سلیقه مشتریان طراحی می‌شوند. این طرح‌ها در انواع زمینه‌های پارامتریک و ژئومتریک اجرا می‌شوند و از متریال‌های متنوعی چون چوب، کامپوزیت، کناف و فلز قابل ساخت هستند.</p>
+                <p data-fa="ویژگی بارز کار ما، طراحی‌های منحصر به فرد است که تمامی طرح‌ها توسط خود من انجام می‌شود و شما می‌توانید از طرح‌های اختصاصی بهره‌مند شوید. این تابلوها علاوه بر زیبایی و جذابیت، تاثیر زیادی در جلب توجه مشتریان دارند و برند شما را به شکلی متفاوت و ماندگار به نمایش می‌گذارند. 🌳🙂🌳" data-en="Our signature advantage is delivering truly bespoke concepts—every design is created personally so you receive exclusive solutions. These signs not only look stunning, they make your brand standout and stay memorable. 🌳🙂🌳">ویژگی بارز کار ما، طراحی‌های منحصر به فرد است که تمامی طرح‌ها توسط خود من انجام می‌شود و شما می‌توانید از طرح‌های اختصاصی بهره‌مند شوید. این تابلوها علاوه بر زیبایی و جذابیت، تاثیر زیادی در جلب توجه مشتریان دارند و برند شما را به شکلی متفاوت و ماندگار به نمایش می‌گذارند. 🌳🙂🌳</p>
+                <p><strong data-fa="طراحی شما، تمایز ما!" data-en="Your design, our distinction!">طراحی شما، تمایز ما!</strong></p>
+                <h3 data-fa="طراحی‌های پارامتریک: جلوه‌ای نوآورانه برای تابلوهای تبلیغاتی و دکوراسیون داخلی" data-en="Parametric Designs: Innovative Impact for Signage & Interiors">طراحی‌های پارامتریک: جلوه‌ای نوآورانه برای تابلوهای تبلیغاتی و دکوراسیون داخلی</h3>
+                <p data-fa="با طراحی‌های پارامتریک، هنر و تکنولوژی را در کنار هم تجربه کنید!" data-en="Experience art and technology side by side with parametric design!">با طراحی‌های پارامتریک، هنر و تکنولوژی را در کنار هم تجربه کنید!</p>
+                <p data-fa="ما نمونه‌های خلاقانه‌ای از طراحی‌های پارامتریک ارائه می‌دهیم که قابلیت اجرا با متریال‌های متنوع مانند کامپوزیت، فلز و موارد دیگر را دارند." data-en="We deliver creative parametric concepts that can be executed with materials such as composite, metal, and many more.">ما نمونه‌های خلاقانه‌ای از طراحی‌های پارامتریک ارائه می‌دهیم که قابلیت اجرا با متریال‌های متنوع مانند کامپوزیت، فلز و موارد دیگر را دارند.</p>
+                <p data-fa="این طرح‌ها، نه‌تنها جلوه‌ای منحصر به فرد به تابلوهای تبلیغاتی شما می‌بخشند، بلکه به فضای داخلی شما هویتی مدرن و زیبا می‌دهند." data-en="These solutions not only elevate your advertising signs, they also give interior spaces a modern, elegant identity.">این طرح‌ها، نه‌تنها جلوه‌ای منحصر به فرد به تابلوهای تبلیغاتی شما می‌بخشند، بلکه به فضای داخلی شما هویتی مدرن و زیبا می‌دهند.</p>
+                <h3 data-fa="مزایای طراحی‌های پارامتریک" data-en="Benefits of Parametric Designs">مزایای طراحی‌های پارامتریک</h3>
+                <ul>
+                    <li data-fa="انعطاف‌پذیری بالا در طراحی و اجرا" data-en="High flexibility in design and fabrication">انعطاف‌پذیری بالا در طراحی و اجرا</li>
+                    <li data-fa="مناسب برای سبک‌های مدرن و خاص" data-en="Ideal for modern and distinctive styles">مناسب برای سبک‌های مدرن و خاص</li>
+                    <li data-fa="قابلیت ترکیب با متریال‌های مختلف" data-en="Compatible with diverse material combinations">قابلیت ترکیب با متریال‌های مختلف</li>
+                </ul>
+                <p data-fa="✨ با ما همراه شوید تا ایده‌های شما را به واقعیت تبدیل کنیم!" data-en="✨ Partner with us to turn your ideas into reality!">✨ با ما همراه شوید تا ایده‌های شما را به واقعیت تبدیل کنیم!</p>
+                <p data-fa="برای مشاهده نمونه‌کارها و دریافت مشاوره رایگان، با ما تماس بگیرید. 🌳🙂🌳" data-en="Reach out to see more samples and receive a free consultation. 🌳🙂🌳">برای مشاهده نمونه‌کارها و دریافت مشاوره رایگان، با ما تماس بگیرید. 🌳🙂🌳</p>
+            </div>
+            <div class="gallery-grid" id="categoryGallery">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-images"></i>
+                <h3 data-fa="هنوز نمونه کاری برای این دسته اضافه نشده است" data-en="No samples have been added for this category yet">هنوز نمونه کاری برای این دسته اضافه نشده است</h3>
+                <p data-fa="به زودی نمونه کارهای جدید اضافه خواهد شد" data-en="New work will be added soon">به زودی نمونه کارهای جدید اضافه خواهد شد</p>
+            </div>
+        </div>
+        <button class="category-back-to-top" id="categoryBackToTop" aria-label="بازگشت به بالای دسته بندی">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <span class="lightbox-prev" id="lightboxPrev">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+        <span class="lightbox-next" id="lightboxNext">
+            <i class="fas fa-chevron-left"></i>
+        </span>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightboxImage">
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxCounter"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Naroon</h3>
+                    <p data-fa="طراحی و ساخت انواع تابلوهای تبلیغاتی با بالاترین کیفیت و بهترین قیمت" data-en="Design and build of all types of advertising signs with top quality and the best pricing">طراحی و ساخت انواع تابلوهای تبلیغاتی با بالاترین کیفیت و بهترین قیمت</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fa="لینک‌های سریع" data-en="Quick Links">لینک‌های سریع</h4>
+                    <ul>
+                        <li><a href="index.html" data-fa="خانه" data-en="Home">خانه</a></li>
+                        <li><a href="index.html#services" data-fa="خدمات" data-en="Services">خدمات</a></li>
+                        <li><a href="gallery.html" data-fa="گالری" data-en="Gallery">گالری</a></li>
+                        <li><a href="index.html#about" data-fa="درباره ما" data-en="About Us">درباره ما</a></li>
+                        <li><a href="index.html#contact" data-fa="تماس با ما" data-en="Contact">تماس با ما</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fa="خدمات" data-en="Services">خدمات</h4>
+                    <ul>
+                        <li><a href="gallery.html?category=channel-letters" data-fa="حروف چنلیوم" data-en="Channel Letters">حروف چنلیوم</a></li>
+                        <li><a href="gallery.html?category=plastic-letters" data-fa="حروف پلاستیک" data-en="Plastic Letters">حروف پلاستیک</a></li>
+                        <li><a href="gallery.html?category=steel-letters" data-fa="حروف استیل" data-en="Steel Letters">حروف استیل</a></li>
+                        <li><a href="gallery.html?category=metal-letters" data-fa="حروف فلزی" data-en="Metal Letters">حروف فلزی</a></li>
+                        <li><a href="gallery.html?category=neon-plex" data-fa="تابلو نئون فلکسی" data-en="Neon Flex Signs">تابلو نئون فلکسی</a></li>
+                        <li><a href="gallery.html?category=led" data-fa="تابلوی LED" data-en="LED Signs">تابلوی LED</a></li>
+                        <li><a href="gallery.html?category=lightbox" data-fa="لایت باکس و باکس" data-en="Lightbox & Box">لایت باکس و باکس</a></li>
+                        <li><a href="gallery.html?category=exhibition" data-fa="کارهای نمایشگاهی" data-en="Exhibition Works">کارهای نمایشگاهی</a></li>
+                        <li><a href="gallery.html?category=polygon-3d" data-fa="سازه های پلیگان /پارامتریک/ژئومتریک" data-en="3D Polygon / Parametric Structures">سازه های پلیگان /پارامتریک/ژئومتریک</a></li>
+                        <li><a href="gallery.html?category=european" data-fa="تابلو اروپایی" data-en="European Signs">تابلو اروپایی</a></li>
+                        <li><a href="gallery.html?category=led-display" data-fa="تلویزیون شهری و تابلو روان" data-en="LED Display & Digital Signage">تلویزیون شهری و تابلو روان</a></li>
+                        <li><a href="gallery.html?category=traffic-signs" data-fa="تابلوهای ترافیکی" data-en="Traffic Signs">تابلوهای ترافیکی</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fa="تماس با ما" data-en="Contact Us">تماس با ما</h4>
+                    <ul>
+                        <li><i class="fas fa-mobile-alt"></i> 09109481229</li>
+                        <li><i class="fas fa-user"></i> <span data-fa="میرزایی" data-en="Mirzaei">میرزایی</span></li>
+                        <li><i class="fas fa-envelope"></i> info@naroon.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-fa="کرج، مهرشهر، بلوار امام خمینی، خیابان شهید نیکوکار، انتهای کوچه باقری" data-en="Karaj, Mehrshahr, Imam Khomeini Blvd, Shahid Nikookar St, End of Bagheri Alley">کرج، مهرشهر، بلوار امام خمینی، خیابان شهید نیکوکار، انتهای کوچه باقری</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-fa="&copy; ۱۴۰۳ Naroon. تمامی حقوق محفوظ است." data-en="&copy; 2024 Naroon. All rights reserved.">&copy; ۱۴۰۳ Naroon. تمامی حقوق محفوظ است.</p>
+                <p data-fa="سایت ساخته شده توسط ALIREZA_ERRORR" data-en="Website built by ALIREZA_ERRORR">سایت ساخته شده توسط ALIREZA_ERRORR</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="gallery-page.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
