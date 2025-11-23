@@ -4,5 +4,6 @@
     "port": 8000,
     "version": "3.12",
     "timezone": "Asia/Tehran"
-  }
+  },
+  "start": "python3 app.py"
 }
