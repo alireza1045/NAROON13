@@ -5,5 +5,5 @@
     "version": "3.12",
     "timezone": "Asia/Tehran"
   },
-  "start": "python3 main.py"
+  "start": "python3 app.py"
 }
