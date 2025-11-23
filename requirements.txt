@@ -1,12 +1,8 @@
-# Python Dependencies for NAROON Website Project
-# نصب با دستور: pip install -r requirements.txt
-
-# Image Processing
-Pillow>=10.0.0  # برای تبدیل تصاویر به WebP (convert_images_to_webp.py)
-
-# Video Processing
-moviepy>=1.0.3  # برای بهینه‌سازی ویدیو (optimize_video_simple.py)
-
-# Note: main.py از کتابخانه‌های استاندارد Python استفاده می‌کند (http.server, socketserver)
-# و نیازی به نصب کتابخانه اضافی ندارد
-
+blinker==1.8.2
+click==8.1.7
+colorama==0.4.6
+Flask==3.0.3
+itsdangerous==2.2.0
+Jinja2==3.1.5
+MarkupSafe==2.1.5
+Werkzeug==3.0.6
