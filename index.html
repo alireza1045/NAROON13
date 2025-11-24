@@ -9,6 +9,23 @@
     <meta name="author" content="NAROON">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="static/css/styles.css" as="style">
+    <link rel="preload" href="static/js/script.js" as="script">
+    <link rel="preload" href="static/data/gallery-data.json" as="fetch" crossorigin>
+    
+    <!-- Prefetch Next Pages -->
+    <link rel="prefetch" href="gallery.html">
+    <link rel="prefetch" href="errorr.html">
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://naroonsignmaker.com/">
@@ -22,9 +39,14 @@
     <meta property="twitter:title" content="گروه تبلیغات و تابلوسازی NAROON">
     <meta property="twitter:description" content="طراحی و ساخت انواع تابلوهای تبلیغاتی با بهترین کیفیت و قیمت">
     <meta property="twitter:image" content="https://naroonsignmaker.com/images/about-workshop.webp">
+    <!-- CSS with high priority -->
     <link rel="stylesheet" href="static/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Fonts with display=swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <!-- Font Awesome with async loading -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 </head>
 <body>
     <!-- Mobile Header (Sticky) -->
@@ -807,9 +829,17 @@
             // Get channel-letters images from manifest or fetch
             let channelLettersImages = [];
             
-            // Fetch from gallery-data.json
-            fetch('static/data/gallery-data.json')
-                .then(response => response.json())
+            // Fetch from gallery-data.json with cache support
+            fetch('static/data/gallery-data.json', {
+                cache: 'force-cache',
+                headers: {
+                    'Cache-Control': 'max-age=3600'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
                 .then(data => {
                     // Try channel-letters first, then polygon-3d, then any category with images
                     if (data['channel-letters'] && Array.isArray(data['channel-letters']) && data['channel-letters'].length > 0) {
@@ -829,7 +859,23 @@
                         initSlideshow();
                     }
                 })
-                .catch(err => console.error('Failed to load images for hero slideshow:', err));
+                .catch(err => {
+                    console.error('Failed to load images for hero slideshow:', err);
+                    // Try to load from cache if available
+                    if ('caches' in window) {
+                        caches.match('static/data/gallery-data.json')
+                            .then(response => response ? response.json() : null)
+                            .then(data => {
+                                if (data && data['channel-letters']) {
+                                    channelLettersImages = data['channel-letters'];
+                                    if (channelLettersImages.length > 0) {
+                                        initSlideshow();
+                                    }
+                                }
+                            })
+                            .catch(() => {});
+                    }
+                });
 
             function shuffleImages(images) {
                 const arr = images.slice();
@@ -845,16 +891,41 @@
 
                 const shuffledImages = shuffleImages(channelLettersImages);
 
-                // Create slide elements
-                shuffledImages.forEach((imagePath, index) => {
-                    const slide = document.createElement('div');
-                    slide.className = 'slide';
-                    slide.style.backgroundImage = `url('${imagePath}')`;
-                    if (index === 0) {
-                        slide.classList.add('active');
-                    }
-                    slideshowContainer.appendChild(slide);
-                });
+                // Preload first image for instant display
+                const firstImage = new Image();
+                firstImage.src = shuffledImages[0];
+                firstImage.onload = () => {
+                    // First image loaded, create slides
+                    createSlides();
+                };
+                firstImage.onerror = () => {
+                    // Even if first image fails, create slides
+                    createSlides();
+                };
+                
+                // If first image is already cached, create slides immediately
+                if (firstImage.complete) {
+                    createSlides();
+                }
+                
+                function createSlides() {
+                    shuffledImages.forEach((imagePath, index) => {
+                        const slide = document.createElement('div');
+                        slide.className = 'slide';
+                        // Preload images with fetchpriority for first few slides
+                        if (index < 3) {
+                            const img = new Image();
+                            img.src = imagePath;
+                            img.loading = 'eager';
+                            img.fetchPriority = index === 0 ? 'high' : 'auto';
+                        }
+                        slide.style.backgroundImage = `url('${imagePath}')`;
+                        if (index === 0) {
+                            slide.classList.add('active');
+                        }
+                        slideshowContainer.appendChild(slide);
+                    });
+                }
 
                 let currentIndex = 0;
                 const slides = slideshowContainer.querySelectorAll('.slide');
@@ -911,6 +982,17 @@
         })();
 
     </script>
-    <script src="static/js/script.js"></script>
+    <!-- Script with defer for non-blocking load -->
+    <script src="static/js/script.js" defer></script>
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker registered:', reg))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+    </script>
 </body>
 </html>

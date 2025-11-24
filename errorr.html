@@ -9,6 +9,23 @@
     <meta name="author" content="NAROON">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="static/css/styles.css" as="style">
+    <link rel="preload" href="static/js/ERRORR.js" as="script">
+    <link rel="preload" href="static/data/errorr-media.json" as="fetch" crossorigin>
+    
+    <!-- Prefetch Next Pages -->
+    <link rel="prefetch" href="index.html">
+    <link rel="prefetch" href="gallery.html">
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://naroonsignmaker.com/errorr.html">
@@ -22,9 +39,14 @@
     <meta property="twitter:title" content="محصولات ERRORR | NAROON">
     <meta property="twitter:description" content="مشاهده محصولات ERRORR">
     <meta property="twitter:image" content="https://naroonsignmaker.com/images/about-workshop.webp">
+    <!-- CSS with high priority -->
     <link rel="stylesheet" href="static/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Fonts with display=swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <!-- Font Awesome with async loading -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
     <style>
         .errorr-page-header {
             background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #3b82f6 100%);
@@ -216,8 +238,19 @@
         </div>
     </footer>
 
-    <script src="static/js/script.js"></script>
-    <script src="static/js/ERRORR.js"></script>
+    <!-- Scripts with defer for non-blocking load -->
+    <script src="static/js/script.js" defer></script>
+    <script src="static/js/ERRORR.js" defer></script>
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker registered:', reg))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+    </script>
     <script>
         // ERRORR Video Modal
         document.addEventListener('DOMContentLoaded', function() {
