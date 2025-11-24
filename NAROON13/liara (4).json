@@ -1,8 +1,9 @@
 {
-  "app": "naroon3",
-  "port": 8000,
-  "build": {
-    "location": "iran"
+  "python": {
+    "mirror": true,
+    "port": 8000,
+    "version": "3.12",
+    "timezone": "Asia/Tehran"
   },
-  "disks": []
+  "start": "python3 main.py"
 }
