@@ -1,7 +1,7 @@
 {
   "python": {
     "mirror": true,
-    "port": 8000,
+    "port": 80,
     "version": "3.12",
     "timezone": "Asia/Tehran"
   },
