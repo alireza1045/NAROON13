@@ -860,6 +860,16 @@ body.lang-en .footer-content {
     line-height: 1.6;
 }
 
+.hero-3d-preview-hint {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fbbf24;
+    border: 1px dashed rgba(251, 191, 36, 0.6);
+    border-radius: 999px;
+    padding: 0.15rem 0.8rem;
+    flex-shrink: 0;
+}
+
 .hero-3d-preview-content i.fa-play-circle {
     font-size: 2rem;
     color: #fbbf24;
