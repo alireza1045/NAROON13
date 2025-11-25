@@ -844,6 +844,7 @@
             let currentIndex = 0;
             let slides = [];
             let slideshowInterval = null;
+            let currentSignature = '';
 
             function preloadImage(src, priority = 'auto') {
                 const img = new Image();
@@ -889,6 +890,11 @@
             function initSlideshow(imageList) {
                 const normalized = encodePaths(imageList);
                 if (!normalized.length) return;
+
+                const signature = normalized.join('|');
+                if (signature === currentSignature) return;
+                currentSignature = signature;
+
                 buildSlides(normalized);
             }
 
@@ -905,6 +911,9 @@
                 }
                 initSlideshow(images);
             }
+
+            // Immediately bootstrap with local fallback so hero isn't blank
+            bootstrap(FALLBACK_WALLPAPERS);
 
             fetch('static/data/gallery-data.json', {
                 cache: 'force-cache',
