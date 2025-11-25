@@ -103,9 +103,7 @@ async function displayErrorrGallery() {
                 <div class="errorr-video-play-button">
                     <i class="fas fa-play"></i>
                 </div>
-                <div class="errorr-item-overlay">
-                    <i class="fas fa-play-circle"></i>
-                </div>
+                <div class="errorr-item-overlay"></div>
             `;
             item.addEventListener('click', () => openErrorrLightbox(index, mediaFiles));
             

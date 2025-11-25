@@ -829,10 +829,14 @@ body.lang-en .footer-content {
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
-    padding: 1.25rem 1.5rem;
+    padding: 1.5rem 2rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 140px;
     transition: all 0.3s ease;
     color: white;
     text-align: center;
@@ -846,18 +850,12 @@ body.lang-en .footer-content {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
-.hero-3d-preview-content i.fa-cube {
-    font-size: 1.5rem;
-    color: #fbbf24;
-    flex-shrink: 0;
-}
-
 .hero-3d-preview-content p {
     margin: 0;
     font-size: 0.95rem;
     font-weight: 500;
-    flex: 1;
     line-height: 1.6;
+    width: 100%;
 }
 
 .hero-3d-preview-hint {
@@ -870,16 +868,6 @@ body.lang-en .footer-content {
     flex-shrink: 0;
 }
 
-.hero-3d-preview-content i.fa-play-circle {
-    font-size: 2rem;
-    color: #fbbf24;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-}
-
-.hero-3d-preview-content:hover i.fa-play-circle {
-    transform: scale(1.15);
-}
 
 /* Video Modal */
 .video-modal {
@@ -981,19 +969,12 @@ body.lang-en .footer-content {
 @media (max-width: 768px) {
     .hero-3d-preview-content {
         padding: 1rem 1.25rem;
-        gap: 0.75rem;
-    }
-
-    .hero-3d-preview-content i.fa-cube {
-        font-size: 1.25rem;
+        gap: 0.65rem;
+        min-height: 120px;
     }
 
     .hero-3d-preview-content p {
         font-size: 0.85rem;
-    }
-
-    .hero-3d-preview-content i.fa-play-circle {
-        font-size: 1.75rem;
     }
 
     .video-modal-content {
