@@ -828,7 +828,7 @@ body.lang-en .footer-content {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 1.25rem 1.5rem;
     display: flex;
     align-items: center;
@@ -1007,6 +1007,25 @@ body.lang-en .footer-content {
         width: 40px;
         height: 40px;
         font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 540px) {
+    .hero-3d-preview-content {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-3d-preview-content p {
+        flex-basis: 100%;
+    }
+
+    .hero-3d-preview-hint {
+        order: 3;
+        width: 100%;
+        margin-top: 0.35rem;
+        justify-self: center;
     }
 }
 
