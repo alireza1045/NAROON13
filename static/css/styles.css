@@ -664,9 +664,10 @@ body.lang-en .footer-content {
         width: 100% !important;
         max-width: 100% !important;
         padding: 1.5rem 1rem !important;
-        background: rgba(3, 7, 18, 0.25) !important;
-        backdrop-filter: blur(4px) !important;
-        -webkit-backdrop-filter: blur(4px) !important;
+        background: rgba(3, 7, 18, 0.08) !important;
+        backdrop-filter: blur(5px) saturate(200%) !important;
+        -webkit-backdrop-filter: blur(5px) saturate(200%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.18) !important;
     }
     
     .hero-title {
@@ -739,11 +740,11 @@ body.lang-en .footer-content {
     width: min(900px, 100%);
     padding: 2rem 1rem;
     border-radius: 28px;
-    background: rgba(3, 7, 18, 0.25);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    box-shadow: 0 20px 60px rgba(2, 6, 23, 0.65);
+    background: rgba(3, 7, 18, 0.08);
+    backdrop-filter: blur(5px) saturate(200%);
+    -webkit-backdrop-filter: blur(5px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(2, 6, 23, 0.37);
 }
 
 .hero-title {
