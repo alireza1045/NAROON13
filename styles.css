@@ -647,12 +647,17 @@ body.lang-en .footer-content {
     }
 
     .hero-container {
-        padding: 0 16px 24px;
+        padding: 120px 16px 24px !important;
         position: absolute !important;
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
         z-index: 2 !important;
+        pointer-events: none !important;
+    }
+    
+    .hero-container > * {
+        pointer-events: auto !important;
     }
     
     .hero-content {
@@ -719,9 +724,14 @@ body.lang-en .footer-content {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding: 0 20px 40px;
+    padding: 80px 20px 40px;
     z-index: 2;
     text-align: center;
+    pointer-events: none;
+}
+
+.hero-container > * {
+    pointer-events: auto;
 }
 
 .hero-content {
