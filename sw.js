@@ -1,7 +1,7 @@
 // Service Worker for NAROON Website
 // Cache strategy: Cache First with Network Fallback
 
-const CACHE_VERSION = 'v7';
+const CACHE_VERSION = 'v8';
 const CACHE_NAME = `naroonsignmaker-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `naroonsignmaker-runtime-${CACHE_VERSION}`;
 
@@ -53,7 +53,7 @@ self.addEventListener('activate', (event) => {
     return self.clients.claim(); // Take control immediately
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - optimized for mobile with better cache strategy
 self.addEventListener('fetch', (event) => {
     const { request } = event;
     const url = new URL(request.url);
@@ -73,6 +73,7 @@ self.addEventListener('fetch', (event) => {
         request.destination === 'document' ||
         (request.headers.get('accept') || '').includes('text/html');
 
+    // HTML: Network first, fallback to cache (always fresh content)
     if (isHtmlRequest) {
         event.respondWith(
             fetch(request)
@@ -89,7 +90,36 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // Strategy: Cache First with Network Fallback for non-HTML GET requests
+    // Static assets (CSS, JS, images): Stale-While-Revalidate for better performance
+    const isStaticAsset = 
+        url.pathname.includes('/static/') ||
+        url.pathname.includes('/images/') ||
+        url.pathname.endsWith('.webp') ||
+        url.pathname.endsWith('.css') ||
+        url.pathname.endsWith('.js');
+
+    if (isStaticAsset) {
+        event.respondWith(
+            caches.match(request).then((cachedResponse) => {
+                // Return cached version immediately
+                const fetchPromise = fetch(request).then((response) => {
+                    if (response && response.status === 200 && response.type === 'basic') {
+                        const responseToCache = response.clone();
+                        caches.open(RUNTIME_CACHE).then((cache) => {
+                            cache.put(request, responseToCache);
+                        });
+                    }
+                    return response;
+                }).catch(() => null);
+
+                // Return cached version if available, otherwise wait for network
+                return cachedResponse || fetchPromise;
+            })
+        );
+        return;
+    }
+
+    // Other resources: Cache First with Network Fallback
     event.respondWith(
         caches.match(request).then((cachedResponse) => {
             if (cachedResponse) {

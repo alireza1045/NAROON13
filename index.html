@@ -49,6 +49,16 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+        </div>
+        <p class="loading-text">در حال بارگذاری...</p>
+    </div>
+    
     <!-- Mobile Header (Sticky) -->
     <div class="mobile-header">
         <h2 data-fa="گروه تبلیغات و تابلوسازی NAROON" data-en="NAROON Advertising & Sign Making Group">گروه تبلیغات و تابلوسازی NAROON</h2>
@@ -896,6 +906,41 @@
         })();
 
     </script>
+    
+    <!-- Loading Screen Script -->
+    <script>
+        (function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (!loadingScreen) return;
+            
+            // Hide loader when page is fully loaded
+            function hideLoader() {
+                if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
+                    loadingScreen.classList.add('hidden');
+                    // Remove from DOM after animation
+                    setTimeout(() => {
+                        if (loadingScreen.parentNode) {
+                            loadingScreen.parentNode.removeChild(loadingScreen);
+                        }
+                    }, 500);
+                }
+            }
+            
+            // Hide loader when DOM is ready and images are loaded
+            if (document.readyState === 'complete') {
+                // Wait a bit for images to render
+                setTimeout(hideLoader, 300);
+            } else {
+                window.addEventListener('load', () => {
+                    setTimeout(hideLoader, 300);
+                });
+            }
+            
+            // Fallback: hide after max 3 seconds
+            setTimeout(hideLoader, 3000);
+        })();
+    </script>
+    
     <!-- Script with defer for non-blocking load -->
     <script src="static/js/script.js" defer></script>
     <!-- Service Worker Registration -->
