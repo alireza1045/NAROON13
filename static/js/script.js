@@ -393,55 +393,55 @@ document.querySelectorAll('img').forEach(img => {
     }
 })();
 
-// 3D Preview Video Modal
+// ERRORR Video Modal
 (function() {
     'use strict';
     
-    const previewBox = document.getElementById('hero3dPreviewBox');
-    const videoModal = document.getElementById('videoModal');
-    const videoModalClose = document.getElementById('videoModalClose');
-    const previewVideo = document.getElementById('previewVideo');
+    const errorrVideoBox = document.getElementById('errorrVideoBox');
+    const errorrVideoModal = document.getElementById('errorrVideoModal');
+    const errorrVideoModalClose = document.getElementById('errorrVideoModalClose');
+    const errorrPreviewVideo = document.getElementById('errorrPreviewVideo');
     
-    if (!previewBox || !videoModal || !videoModalClose || !previewVideo) {
+    if (!errorrVideoBox || !errorrVideoModal || !errorrVideoModalClose || !errorrPreviewVideo) {
         return;
     }
     
     // Set video source
-    const videoSource = previewVideo.querySelector('source');
+    const videoSource = errorrPreviewVideo.querySelector('source');
     if (videoSource) {
         // Set video path
         videoSource.src = 'videos/3d-preview_1.mp4';
-        previewVideo.load();
+        errorrPreviewVideo.load();
     }
     
     // Open modal
-    previewBox.addEventListener('click', () => {
-        videoModal.classList.add('active');
+    errorrVideoBox.addEventListener('click', () => {
+        errorrVideoModal.classList.add('active');
         document.body.style.overflow = 'hidden';
         // Auto-play video when modal opens (optional)
-        // previewVideo.play().catch(err => console.log('Autoplay prevented:', err));
+        // errorrPreviewVideo.play().catch(err => console.log('Autoplay prevented:', err));
     });
     
     // Close modal
     function closeModal() {
-        videoModal.classList.remove('active');
+        errorrVideoModal.classList.remove('active');
         document.body.style.overflow = '';
-        previewVideo.pause();
-        previewVideo.currentTime = 0;
+        errorrPreviewVideo.pause();
+        errorrPreviewVideo.currentTime = 0;
     }
     
-    videoModalClose.addEventListener('click', closeModal);
+    errorrVideoModalClose.addEventListener('click', closeModal);
     
     // Close on overlay click
-    videoModal.addEventListener('click', (e) => {
-        if (e.target === videoModal || e.target.classList.contains('video-modal-overlay')) {
+    errorrVideoModal.addEventListener('click', (e) => {
+        if (e.target === errorrVideoModal || e.target.classList.contains('errorr-video-modal-overlay')) {
             closeModal();
         }
     });
     
     // Close on ESC key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+        if (e.key === 'Escape' && errorrVideoModal.classList.contains('active')) {
             closeModal();
         }
     });

@@ -159,13 +159,10 @@
     <!-- ERRORR Video Box -->
     <section class="errorr-products-section">
         <div class="container">
-            <div class="errorr-products-box" id="errorrVideoBox">
+            <div class="errorr-products-box" id="errorrSpiderVideoBox">
                 <div class="errorr-products-content">
-                    <h2 class="errorr-products-title">محصولات ERRORR</h2>
-                    <p class="errorr-video-label">ویدیو Spider RGB</p>
-                    <div class="errorr-products-click">
-                        کلیک کنید
-                    </div>
+                    <p class="errorr-video-label" data-fa="ویدیو Spider RGB" data-en="Spider RGB Video">ویدیو Spider RGB</p>
+                    <span class="errorr-products-click" data-fa="کلیک کنید" data-en="Click to view">کلیک کنید</span>
                 </div>
             </div>
         </div>
@@ -191,14 +188,17 @@
 
     <!-- ERRORR Video Modal -->
     <div id="errorrVideoModal" class="errorr-video-modal">
+        <div class="errorr-video-modal-overlay"></div>
         <div class="errorr-video-modal-content">
-            <button class="errorr-video-modal-close" aria-label="بستن">
+            <button class="errorr-video-modal-close" id="errorrVideoModalClose" aria-label="بستن">
                 <i class="fas fa-times"></i>
             </button>
-            <video id="errorrVideoPlayer" controls>
-                <source src="videos/IMG_4076_1_1.mp4" type="video/mp4">
-                مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
-            </video>
+            <div class="errorr-video-modal-video">
+                <video id="errorrVideoPlayer" controls>
+                    <source src="videos/IMG_4076_1_1_1.mp4" type="video/mp4">
+                    <p data-fa="مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند." data-en="Your browser does not support video playback.">مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.</p>
+                </video>
+            </div>
         </div>
     </div>
 
@@ -254,20 +254,18 @@
     <script>
         // ERRORR Video Modal
         document.addEventListener('DOMContentLoaded', function() {
-            const errorrBox = document.getElementById('errorrVideoBox');
+            const errorrSpiderBox = document.getElementById('errorrSpiderVideoBox');
             const errorrModal = document.getElementById('errorrVideoModal');
             const errorrVideo = document.getElementById('errorrVideoPlayer');
             const errorrClose = document.querySelector('.errorr-video-modal-close');
             
-            if (errorrBox && errorrModal && errorrVideo) {
+            if (errorrSpiderBox && errorrModal && errorrVideo) {
                 // باز کردن modal با کلیک روی باکس
-                errorrBox.addEventListener('click', function() {
+                errorrSpiderBox.addEventListener('click', function() {
                     errorrModal.classList.add('active');
-                    // ویدیو فقط با کلیک کاربر پخش می‌شود (autoplay حذف شده)
-                    errorrVideo.play().catch(() => {
-                        // اگر autoplay block شده باشد، کاربر باید دستی پخش کند
-                    });
                     document.body.style.overflow = 'hidden';
+                    // ویدیو فقط با کلیک کاربر پخش می‌شود (autoplay حذف شده)
+                    // errorrVideo.play().catch(() => {});
                 });
                 
                 // بستن modal
@@ -282,9 +280,9 @@
                     errorrClose.addEventListener('click', closeModal);
                 }
                 
-                // بستن با کلیک روی پس‌زمینه
+                // بستن با کلیک روی پس‌زمینه یا overlay
                 errorrModal.addEventListener('click', function(e) {
-                    if (e.target === errorrModal) {
+                    if (e.target === errorrModal || e.target.classList.contains('errorr-video-modal-overlay')) {
                         closeModal();
                     }
                 });
