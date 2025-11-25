@@ -1,8 +1,9 @@
 // Service Worker for NAROON Website
 // Cache strategy: Cache First with Network Fallback
 
-const CACHE_NAME = 'naroonsignmaker-v1';
-const RUNTIME_CACHE = 'naroonsignmaker-runtime-v1';
+const CACHE_VERSION = 'v3';
+const CACHE_NAME = `naroonsignmaker-static-${CACHE_VERSION}`;
+const RUNTIME_CACHE = `naroonsignmaker-runtime-${CACHE_VERSION}`;
 
 // Resources to cache on install
 const STATIC_CACHE_URLS = [
