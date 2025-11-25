@@ -1327,9 +1327,6 @@ body.lang-en .footer-content {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    display: block;
-    text-decoration: none;
-    color: inherit;
 }
 
 .service-card:hover {
