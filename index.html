@@ -141,7 +141,9 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-slideshow" id="heroSlideshow"></div>
+        <div class="hero-slideshow-wrapper">
+            <div class="hero-slideshow" id="heroSlideshow"></div>
+        </div>
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title" data-fa="گروه تبلیغات و تابلوسازی NAROON" data-en="NAROON Advertising & Sign Making Group">گروه تبلیغات و تابلوسازی NAROON</h1>
@@ -819,164 +821,118 @@
     </footer>
 
     <script>
-        // Hero Slideshow with Channel Letters Images
-        (function() {
+        // Hero Slideshow with Wallpaper Images
+        (function () {
             const slideshowContainer = document.getElementById('heroSlideshow');
             if (!slideshowContainer) return;
 
-            // Get channel-letters images from manifest or fetch
-            let channelLettersImages = [];
-            
-            // Fetch from gallery-data.json with cache support
+            const FALLBACK_WALLPAPERS = [
+                'images/کاغذ دیواری/photo_10_2025-01-10_15-24-28.webp',
+                'images/کاغذ دیواری/photo_14_2025-11-07_18-54-09.webp',
+                'images/کاغذ دیواری/photo_2_2025-11-08_18-26-20.webp',
+                'images/کاغذ دیواری/photo_2_2025-11-13_13-41-08.webp',
+                'images/کاغذ دیواری/photo_21_2025-11-13_13-46-04.webp',
+                'images/کاغذ دیواری/photo_3_2025-11-13_13-51-55.webp',
+                'images/کاغذ دیواری/photo_6_2025-11-13_13-51-55.webp',
+                'images/کاغذ دیواری/photo_7_2025-11-13_13-51-55.webp',
+                'images/کاغذ دیواری/photo_83_2025-01-10_15-25-04.webp'
+            ];
+
+            const SLIDE_INTERVAL = 2000; // 2 seconds
+            const encodePaths = (paths = []) => paths.map(path => path.replace(/ /g, '%20'));
+
+            let currentIndex = 0;
+            let slides = [];
+            let slideshowInterval = null;
+
+            function preloadImage(src, priority = 'auto') {
+                const img = new Image();
+                img.src = src;
+                img.loading = priority === 'high' ? 'eager' : 'lazy';
+                img.fetchPriority = priority;
+            }
+
+            function startSlideshow() {
+                if (slideshowInterval) clearInterval(slideshowInterval);
+                if (slides.length <= 1) return;
+
+                slideshowInterval = setInterval(() => {
+                    const currentSlide = slides[currentIndex];
+                    currentSlide.classList.remove('active');
+                    currentSlide.classList.add('fade-out');
+
+                    currentIndex = (currentIndex + 1) % slides.length;
+
+                    setTimeout(() => {
+                        currentSlide.classList.remove('fade-out');
+                        slides[currentIndex].classList.add('active');
+                    }, 100);
+                }, SLIDE_INTERVAL);
+            }
+
+            function buildSlides(images) {
+                slideshowContainer.innerHTML = '';
+                slides = images.map((imagePath, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'slide';
+                    slide.style.backgroundImage = `url('${imagePath}')`;
+                    if (index === 0) slide.classList.add('active');
+                    if (index < 3) preloadImage(imagePath, index === 0 ? 'high' : 'auto');
+                    slideshowContainer.appendChild(slide);
+                    return slide;
+                });
+
+                currentIndex = 0;
+                startSlideshow();
+            }
+
+            function initSlideshow(imageList) {
+                const normalized = encodePaths(imageList);
+                if (!normalized.length) return;
+                buildSlides(normalized);
+            }
+
+            function hydrateFromData(data) {
+                if (data && Array.isArray(data.wallpaper) && data.wallpaper.length) {
+                    return data.wallpaper;
+                }
+                return FALLBACK_WALLPAPERS;
+            }
+
+            function bootstrap(images) {
+                if (!images || !images.length) {
+                    images = FALLBACK_WALLPAPERS;
+                }
+                initSlideshow(images);
+            }
+
             fetch('static/data/gallery-data.json', {
                 cache: 'force-cache',
-                headers: {
-                    'Cache-Control': 'max-age=3600'
-                }
+                headers: { 'Cache-Control': 'max-age=3600' }
             })
                 .then(response => {
                     if (!response.ok) throw new Error('Network response was not ok');
                     return response.json();
                 })
-                .then(data => {
-                    // Try channel-letters first, then polygon-3d, then any category with images
-                    if (data['channel-letters'] && Array.isArray(data['channel-letters']) && data['channel-letters'].length > 0) {
-                        channelLettersImages = data['channel-letters'];
-                    } else if (data['polygon-3d'] && Array.isArray(data['polygon-3d']) && data['polygon-3d'].length > 0) {
-                        channelLettersImages = data['polygon-3d'];
-                    } else {
-                        // Fallback: use first category with images
-                        for (const category in data) {
-                            if (Array.isArray(data[category]) && data[category].length > 0) {
-                                channelLettersImages = data[category];
-                                break;
-                            }
-                        }
-                    }
-                    if (channelLettersImages.length > 0) {
-                        initSlideshow();
-                    }
-                })
-                .catch(err => {
-                    console.error('Failed to load images for hero slideshow:', err);
-                    // Try to load from cache if available
+                .then(data => bootstrap(hydrateFromData(data)))
+                .catch(() => {
                     if ('caches' in window) {
                         caches.match('static/data/gallery-data.json')
                             .then(response => response ? response.json() : null)
-                            .then(data => {
-                                if (data && data['channel-letters']) {
-                                    channelLettersImages = data['channel-letters'];
-                                    if (channelLettersImages.length > 0) {
-                                        initSlideshow();
-                                    }
-                                }
-                            })
-                            .catch(() => {});
+                            .then(cacheData => bootstrap(hydrateFromData(cacheData)))
+                            .catch(() => bootstrap(FALLBACK_WALLPAPERS));
+                    } else {
+                        bootstrap(FALLBACK_WALLPAPERS);
                     }
                 });
 
-            function shuffleImages(images) {
-                const arr = images.slice();
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-                return arr;
-            }
-
-            function initSlideshow() {
-                if (channelLettersImages.length === 0) return;
-
-                const shuffledImages = shuffleImages(channelLettersImages);
-
-                // Preload first image for instant display
-                const firstImage = new Image();
-                firstImage.src = shuffledImages[0];
-                firstImage.onload = () => {
-                    // First image loaded, create slides
-                    createSlides();
-                };
-                firstImage.onerror = () => {
-                    // Even if first image fails, create slides
-                    createSlides();
-                };
-                
-                // If first image is already cached, create slides immediately
-                if (firstImage.complete) {
-                    createSlides();
-                }
-                
-                function createSlides() {
-                    shuffledImages.forEach((imagePath, index) => {
-                        const slide = document.createElement('div');
-                        slide.className = 'slide';
-                        // Preload images with fetchpriority for first few slides
-                        if (index < 3) {
-                            const img = new Image();
-                            img.src = imagePath;
-                            img.loading = 'eager';
-                            img.fetchPriority = index === 0 ? 'high' : 'auto';
-                        }
-                        slide.style.backgroundImage = `url('${imagePath}')`;
-                        if (index === 0) {
-                            slide.classList.add('active');
-                        }
-                        slideshowContainer.appendChild(slide);
-                    });
-                }
-
-                let currentIndex = 0;
-                const slides = slideshowContainer.querySelectorAll('.slide');
-                const totalSlides = slides.length;
-
-                function nextSlide() {
-                    if (totalSlides === 0) return;
-                    
-                    const currentSlide = slides[currentIndex];
-                    currentSlide.classList.remove('active');
-                    currentSlide.classList.add('fade-out');
-
-                    currentIndex = (currentIndex + 1) % totalSlides;
-                    
-                    setTimeout(() => {
-                        currentSlide.classList.remove('fade-out');
-                        slides[currentIndex].classList.add('active');
-                    }, 100);
-                }
-
-                // Start slideshow - change every 2 seconds (slower on mobile for better performance)
-                if (totalSlides > 1) {
-                    const isMobile = window.innerWidth <= 768;
-                    const interval = isMobile ? 4000 : 2500; // Slower on mobile to reduce CPU usage
-                    let slideshowInterval = null;
-                    
-                    function startSlideshow() {
-                        if (slideshowInterval) clearInterval(slideshowInterval);
-                        // Only run slideshow when page is visible
-                        if (document.visibilityState === 'visible') {
-                            slideshowInterval = setInterval(nextSlide, interval);
-                        }
-                    }
-                    
-                    // Start slideshow
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') {
                     startSlideshow();
-                    
-                    // Pause when page is hidden, resume when visible
-                    document.addEventListener('visibilitychange', () => {
-                        if (document.visibilityState === 'visible') {
-                            startSlideshow();
-                        } else if (slideshowInterval) {
-                            clearInterval(slideshowInterval);
-                            slideshowInterval = null;
-                        }
-                    });
+                } else if (slideshowInterval) {
+                    clearInterval(slideshowInterval);
                 }
-            }
-
-            // Initialize if images are already available
-            if (channelLettersImages.length > 0) {
-                initSlideshow();
-            }
+            });
         })();
 
     </script>
