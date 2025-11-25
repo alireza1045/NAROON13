@@ -253,14 +253,18 @@ function displayCategoryGallery() {
 
     if (galleryGrid) {
         galleryGrid.style.display = 'grid';
-        galleryGrid.innerHTML = itemsForCategory.map((item, index) => `
+        galleryGrid.innerHTML = itemsForCategory.map((item, index) => {
+            // Load first 9 images with high priority to prevent hanging
+            const isPriorityImage = index < 9;
+            return `
             <div class="gallery-item" data-category="${item.category}" data-index="${index}" data-image="${item.image}" data-title="${item.title}">
-                <img class="gallery-image loading" src="${GALLERY_IMAGE_PLACEHOLDER}" data-src="${item.image}" alt="${item.title}" loading="lazy" decoding="async">
+                <img class="gallery-image loading" src="${GALLERY_IMAGE_PLACEHOLDER}" data-src="${item.image}" alt="${item.title}" loading="${isPriorityImage ? 'eager' : 'lazy'}" decoding="async" ${isPriorityImage ? 'fetchpriority="high"' : ''}>
                 <div class="gallery-item-overlay">
                     <div class="gallery-item-title">${item.title}</div>
                 </div>
             </div>
-        `).join('');
+        `;
+        }).join('');
 
         const renderedItems = galleryGrid.querySelectorAll('.gallery-item');
         const isMobile = window.innerWidth <= 768;
@@ -618,9 +622,17 @@ function initializeGalleryImages(renderedItems) {
             threshold: 0.1
         });
 
-        images.forEach((img) => {
+        images.forEach((img, index) => {
             img.classList.add('loading');
-            galleryImageObserver.observe(img);
+            // Load first 9 images immediately to prevent hanging
+            if (index < 9 && img.loading === 'eager') {
+                const src = img.dataset.src;
+                if (src) {
+                    loadImageWithRetry(img, src);
+                }
+            } else {
+                galleryImageObserver.observe(img);
+            }
         });
     } else {
         images.forEach((img) => {

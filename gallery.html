@@ -18,9 +18,10 @@
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     
     <!-- Preload Critical Resources -->
-    <link rel="preload" href="static/css/styles.css" as="style">
-    <link rel="preload" href="static/js/gallery-page.js" as="script">
-    <link rel="preload" href="static/data/gallery-data.json" as="fetch" crossorigin>
+    <link rel="preload" href="static/css/styles.css" as="style" fetchpriority="high">
+    <link rel="preload" href="static/js/gallery-page.js" as="script" fetchpriority="high">
+    <link rel="preload" href="static/js/script.js" as="script" fetchpriority="high">
+    <link rel="preload" href="static/data/gallery-data.json" as="fetch" crossorigin fetchpriority="high">
     
     <!-- Prefetch Next Pages -->
     <link rel="prefetch" href="index.html">
@@ -399,7 +400,7 @@
     </footer>
 
     <!-- Scripts with defer for non-blocking load -->
-    <script src="static/js/gallery-page.js" defer></script>
+    <script src="static/js/gallery-page.js" defer fetchpriority="high"></script>
     <script src="static/js/script.js" defer></script>
     <!-- Service Worker Registration -->
     <script>
