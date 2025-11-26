@@ -1772,6 +1772,8 @@ body.lang-en .footer-content {
     background: rgba(220, 38, 38, 0.1);
     transition: all 0.3s ease;
     animation: pulseUp 2s ease infinite;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .errorr-products-box:hover .errorr-products-click {

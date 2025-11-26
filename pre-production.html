@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیش از تولید | گروه تبلیغات و تابلوسازی NAROON</title>
+    <meta name="description" content="مشاهده تصاویر سه‌بعدی و ویدیو طراحی سه بعدی تابلوهای تبلیغاتی">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/css/styles.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #020617;
+            color: white;
+            font-family: 'Vazirmatn', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .pre-production-container {
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .video-box {
+            background: rgba(3, 7, 18, 0.1);
+            backdrop-filter: blur(2px) saturate(200%);
+            -webkit-backdrop-filter: blur(2px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 8px 32px 0 rgba(2, 6, 23, 0.37);
+        }
+
+        .video-box-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-box-click {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #dc2626;
+            padding: 0.75rem 2rem;
+            border: 2px solid #dc2626;
+            border-radius: 50px;
+            background: rgba(220, 38, 38, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .video-box-click:hover {
+            background: rgba(220, 38, 38, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90vh;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .video-modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .video-modal-content video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .images-slideshow {
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            background: rgba(3, 7, 18, 0.1);
+            backdrop-filter: blur(2px) saturate(200%);
+            -webkit-backdrop-filter: blur(2px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(2, 6, 23, 0.37);
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(220, 38, 38, 0.8);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        .back-button:hover {
+            background: rgba(220, 38, 38, 1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(220, 38, 38, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .pre-production-container {
+                padding: 1rem 0.5rem;
+                gap: 1.5rem;
+            }
+
+            .video-box {
+                padding: 1.5rem;
+            }
+
+            .video-box-title {
+                font-size: 1.2rem;
+            }
+
+            .video-box-click {
+                font-size: 1.1rem;
+                padding: 0.6rem 1.5rem;
+            }
+
+            .slideshow-container {
+                height: 400px;
+            }
+
+            .back-button {
+                top: 10px;
+                right: 10px;
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='index.html'">
+        <i class="fas fa-arrow-right"></i> بازگشت
+    </button>
+
+    <div class="pre-production-container">
+        <!-- Video Box -->
+        <div class="video-box">
+            <h2 class="video-box-title">ویدیو طراحی سه بعدی</h2>
+            <div class="video-box-click" id="videoBoxClick">کلیک کنید</div>
+        </div>
+
+        <!-- Video Modal -->
+        <div class="video-modal" id="videoModal">
+            <div class="video-modal-content">
+                <button class="video-modal-close" id="videoModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <video id="videoPlayer" controls>
+                    <source src="videos/video_2025-11-26_22-44d-17 (4)_1.mp4" type="video/mp4">
+                    <p>مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.</p>
+                </video>
+            </div>
+        </div>
+
+        <!-- Images Slideshow -->
+        <div class="images-slideshow">
+            <div class="slideshow-container">
+                <div class="slide active">
+                    <img src="images/پیش از تولید/photo_1_2025-11-26_22-38-41.jpg" alt="تصویر سه بعدی 1" loading="eager">
+                </div>
+                <div class="slide">
+                    <img src="images/پیش از تولید/photo_2_2025-11-26_22-38-41.jpg" alt="تصویر سه بعدی 2" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="images/پیش از تولید/photo_3_2025-11-26_22-38-41.jpg" alt="تصویر سه بعدی 3" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="images/پیش از تولید/photo_4_2025-11-26_22-38-41.jpg" alt="تصویر سه بعدی 4" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="images/پیش از تولید/photo_5_2025-11-26_22-38-41.jpg" alt="تصویر سه بعدی 5" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Video Modal
+        const videoBoxClick = document.getElementById('videoBoxClick');
+        const videoModal = document.getElementById('videoModal');
+        const videoModalClose = document.getElementById('videoModalClose');
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        videoBoxClick.addEventListener('click', () => {
+            videoModal.classList.add('active');
+            videoPlayer.play();
+        });
+
+        videoModalClose.addEventListener('click', () => {
+            videoModal.classList.remove('active');
+            videoPlayer.pause();
+        });
+
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.classList.remove('active');
+                videoPlayer.pause();
+            }
+        });
+
+        // Images Slideshow
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance slides every 2 seconds
+        setInterval(nextSlide, 2000);
+    </script>
+</body>
+</html>
+

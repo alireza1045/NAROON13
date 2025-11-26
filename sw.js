@@ -1,7 +1,7 @@
 // Service Worker for NAROON Website
 // Cache strategy: Cache First with Network Fallback
 
-const CACHE_VERSION = 'v42';
+const CACHE_VERSION = 'v43';
 const CACHE_NAME = `naroonsignmaker-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `naroonsignmaker-runtime-${CACHE_VERSION}`;
 
@@ -11,6 +11,7 @@ const STATIC_CACHE_URLS = [
     '/index.html',
     '/gallery.html',
     '/errorr.html',
+    '/pre-production.html',
     '/static/css/styles.css',
     '/static/js/script.js',
     '/static/js/gallery-page.js',
