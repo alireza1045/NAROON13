@@ -115,7 +115,7 @@ body {
 }
 
 .mobile-header h2 {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
     font-weight: 700;
     margin: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -672,7 +672,7 @@ body.lang-en .footer-content {
     }
     
     .hero-title {
-        font-size: 1.8rem !important;
+        font-size: 2.5rem !important;
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
@@ -749,8 +749,30 @@ body.lang-en .footer-content {
     box-shadow: 0 8px 32px 0 rgba(2, 6, 23, 0.37);
 }
 
+.hero-text-main {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ff6d1b;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(255, 109, 27, 0.5);
+    line-height: 1.5;
+    animation: textFadeIn 1s ease-out, textPulse 3s ease-in-out infinite;
+}
+
+.hero-text-sub {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #ff8c42;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 1px 4px rgba(255, 140, 66, 0.4);
+    line-height: 1.6;
+    animation: textFadeIn 1.2s ease-out, textPulse 3s ease-in-out infinite 0.3s;
+}
+
 .hero-title {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
     line-height: 1.2;
@@ -931,10 +953,10 @@ body.lang-en .footer-content {
 
 .scroll-arrow {
     font-size: 1.5rem;
-    color: #dc2626;
+    color: #ff6d1b;
     opacity: 0.3;
     transition: all 0.6s ease;
-    filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.5));
+    filter: drop-shadow(0 0 8px rgba(255, 109, 27, 0.5));
     animation: lightPulse 2s ease-in-out infinite;
 }
 
@@ -953,14 +975,36 @@ body.lang-en .footer-content {
 @keyframes lightPulse {
     0%, 100% {
         opacity: 0.3;
-        filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.5));
+        filter: drop-shadow(0 0 8px rgba(255, 109, 27, 0.5));
         transform: translateY(0) scale(1);
     }
     50% {
         opacity: 1;
-        filter: drop-shadow(0 0 20px rgba(220, 38, 38, 1)) 
-                drop-shadow(0 0 30px rgba(249, 115, 22, 0.8));
+        filter: drop-shadow(0 0 20px rgba(255, 109, 27, 1)) 
+                drop-shadow(0 0 30px rgba(255, 109, 27, 0.8));
         transform: translateY(-5px) scale(1.1);
+    }
+}
+
+@keyframes textFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes textPulse {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 2px 8px rgba(255, 109, 27, 0.5);
+    }
+    50% {
+        opacity: 0.9;
+        text-shadow: 0 2px 12px rgba(255, 109, 27, 0.8);
     }
 }
 
@@ -1603,7 +1647,11 @@ body.lang-en .footer-content {
 
 .errorr-products-box[id="errorrVideoBox"] {
     cursor: pointer;
-    background: white;
+    background: rgba(3, 7, 18, 0.1);
+    backdrop-filter: blur(2px) saturate(200%);
+    -webkit-backdrop-filter: blur(2px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(2, 6, 23, 0.37);
 }
 
 .errorr-products-box[id="errorrVideoBox"]:hover {
@@ -1688,19 +1736,19 @@ body.lang-en .footer-content {
 .errorr-products-click {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #8b5cf6;
+    color: #dc2626;
     padding: 0.75rem 2rem;
-    border: 2px solid #8b5cf6;
+    border: 2px solid #dc2626;
     border-radius: 50px;
-    background: rgba(139, 92, 246, 0.1);
+    background: rgba(220, 38, 38, 0.1);
     transition: all 0.3s ease;
     animation: pulseUp 2s ease infinite;
 }
 
 .errorr-products-box:hover .errorr-products-click {
-    background: rgba(139, 92, 246, 0.2);
+    background: rgba(220, 38, 38, 0.2);
     transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 5px 20px rgba(220, 38, 38, 0.3);
 }
 
 .errorr-products-arrow {
@@ -2876,6 +2924,16 @@ body.lang-en .footer-content {
         font-size: 2.4rem;
     }
 
+    .hero-text-main {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-text-sub {
+        font-size: 0.95rem;
+        margin-bottom: 1.2rem;
+    }
+
     .hero-subtitle {
         font-size: 1.1rem;
     }
@@ -3023,6 +3081,16 @@ body.lang-en .footer-content {
         font-size: 1.7rem;
     }
 
+    .hero-text-main {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .hero-text-sub {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
     .hero-subtitle {
         font-size: 0.95rem;
     }
@@ -3052,7 +3120,7 @@ body.lang-en .footer-content {
     }
 
     .mobile-header h2 {
-        font-size: 0.8rem;
+        font-size: 1.1rem;
         padding: 0.5rem 0.75rem;
     }
 
