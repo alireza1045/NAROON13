@@ -155,7 +155,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-slideshow-wrapper">
-            <div class="hero-slideshow" id="heroSlideshow"></div>
+        <div class="hero-slideshow" id="heroSlideshow"></div>
         </div>
         <div class="hero-container">
             <div class="hero-content">
@@ -841,12 +841,12 @@
             function buildSlides(images) {
                 slideshowContainer.innerHTML = '';
                 slides = images.map((imagePath, index) => {
-                    const slide = document.createElement('div');
-                    slide.className = 'slide';
-                    slide.style.backgroundImage = `url('${imagePath}')`;
+                        const slide = document.createElement('div');
+                        slide.className = 'slide';
+                        slide.style.backgroundImage = `url('${imagePath}')`;
                     if (index === 0) slide.classList.add('active');
                     if (index < 3) preloadImage(imagePath, index === 0 ? 'high' : 'auto');
-                    slideshowContainer.appendChild(slide);
+                        slideshowContainer.appendChild(slide);
                     return slide;
                 });
 
@@ -857,7 +857,7 @@
             function initSlideshow(imageList) {
                 const normalized = encodePaths(imageList);
                 if (!normalized.length) return;
-
+                    
                 const signature = normalized.join('|');
                 if (signature === currentSignature) return;
                 currentSignature = signature;
@@ -877,7 +877,7 @@
                     images = FALLBACK_WALLPAPERS;
                 }
                 initSlideshow(images);
-            }
+                }
 
             // Immediately bootstrap with local fallback so hero isn't blank
             bootstrap(FALLBACK_WALLPAPERS);
@@ -902,11 +902,11 @@
                     }
                 });
 
-            document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'visible') {
-                    startSlideshow();
-                } else if (slideshowInterval) {
-                    clearInterval(slideshowInterval);
+                    document.addEventListener('visibilitychange', () => {
+                        if (document.visibilityState === 'visible') {
+                            startSlideshow();
+                        } else if (slideshowInterval) {
+                            clearInterval(slideshowInterval);
                 }
             });
         })();

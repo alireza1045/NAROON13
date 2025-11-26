@@ -20,8 +20,8 @@
         body {
             margin: 0;
             padding: 0;
-            background: #020617;
-            color: white;
+            background: white;
+            color: #0f172a;
             font-family: 'Vazirmatn', sans-serif;
             overflow-x: hidden;
         }
@@ -33,27 +33,59 @@
             flex-direction: column;
             align-items: center;
             gap: 2rem;
+            background: white;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(120deg, #dc2626, #ff6d1b, #dc2626);
+            background-size: 300% 300%;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 2rem auto;
+            transition: all 0.3s ease;
+            animation: rgbGradient 5s linear infinite;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 4rem;
         }
 
         .video-box {
-            background: rgba(3, 7, 18, 0.1);
-            backdrop-filter: blur(2px) saturate(200%);
-            -webkit-backdrop-filter: blur(2px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: white;
+            border: 2px solid #e5e7eb;
             border-radius: 20px;
             padding: 2rem;
             text-align: center;
             max-width: 600px;
             width: 100%;
-            box-shadow: 0 8px 32px 0 rgba(2, 6, 23, 0.37);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
         }
 
         .video-box-title {
             font-size: 1.5rem;
             font-weight: 600;
-            color: white;
             margin-bottom: 1rem;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(120deg, #dc2626, #25d366, #ff6d1b, #dc2626);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rgbGradient 5s linear infinite;
         }
 
         .video-box-click {
@@ -130,13 +162,11 @@
             width: 100%;
             max-width: 1200px;
             position: relative;
-            background: rgba(3, 7, 18, 0.1);
-            backdrop-filter: blur(2px) saturate(200%);
-            -webkit-backdrop-filter: blur(2px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: white;
+            border: 2px solid #e5e7eb;
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 8px 32px 0 rgba(2, 6, 23, 0.37);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
@@ -146,6 +176,7 @@
             height: 600px;
             overflow: hidden;
             border-radius: 15px;
+            background: #f8fafc;
         }
 
         .slide {
@@ -173,29 +204,6 @@
             border-radius: 15px;
         }
 
-        .back-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(220, 38, 38, 0.8);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            font-family: 'Vazirmatn', sans-serif;
-        }
-
-        .back-button:hover {
-            background: rgba(220, 38, 38, 1);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(220, 38, 38, 0.5);
-        }
-
         @media (max-width: 768px) {
             .pre-production-container {
                 padding: 1rem 0.5rem;
@@ -220,8 +228,6 @@
             }
 
             .back-button {
-                top: 10px;
-                right: 10px;
                 padding: 0.75rem 1.5rem;
                 font-size: 0.9rem;
             }
@@ -229,9 +235,17 @@
     </style>
 </head>
 <body>
-    <button class="back-button" onclick="window.location.href='index.html'">
-        <i class="fas fa-arrow-right"></i> بازگشت
-    </button>
+    <!-- Mobile Header (Sticky) -->
+    <div class="mobile-header">
+        <h2 data-fa="گروه تبلیغات و تابلوسازی NAROON" data-en="NAROON Advertising & Sign Making Group">گروه تبلیغات و تابلوسازی NAROON</h2>
+    </div>
+
+    <!-- Back Button Container -->
+    <div class="back-button-container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+        </a>
+    </div>
 
     <div class="pre-production-container">
         <!-- Video Box -->
@@ -322,4 +336,3 @@
     </script>
 </body>
 </html>
-
