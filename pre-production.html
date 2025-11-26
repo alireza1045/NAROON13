@@ -126,9 +126,12 @@
 
         .video-modal-content {
             position: relative;
-            width: 90%;
-            max-width: 1200px;
+            width: auto;
+            max-width: 400px;
             max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .video-modal-close {
@@ -153,9 +156,13 @@
         }
 
         .video-modal-content video {
-            width: 100%;
+            width: auto;
+            max-width: 100%;
             height: auto;
+            max-height: 90vh;
             border-radius: 10px;
+            aspect-ratio: 9/16;
+            object-fit: contain;
         }
 
         .images-slideshow {
@@ -221,6 +228,16 @@
             .video-box-click {
                 font-size: 1.1rem;
                 padding: 0.6rem 1.5rem;
+            }
+
+            .video-modal-content {
+                max-width: 90%;
+                width: auto;
+            }
+
+            .video-modal-content video {
+                max-width: 100%;
+                max-height: 85vh;
             }
 
             .slideshow-container {
