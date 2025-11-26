@@ -2822,18 +2822,18 @@ body.lang-en .footer-content {
     }
 
     .nav-logo {
-        padding: 0.2rem;
-        max-width: 140px;
+        padding: 0.3rem;
+        max-width: 180px;
         overflow: hidden;
     }
 
     .nav-logo-core {
-        padding: 0.35rem 0.7rem;
+        padding: 0.5rem 1rem;
     }
 
     .nav-logo-title {
-        font-size: 0.95rem;
-        letter-spacing: 0.15rem;
+        font-size: 1.2rem;
+        letter-spacing: 0.2rem;
         white-space: nowrap;
     }
 
@@ -3140,17 +3140,17 @@ body.lang-en .footer-content {
 
     /* Fix logo visibility on small screens like Samsung A54 */
     .nav-logo {
-        padding: 0.15rem;
-        max-width: 120px;
+        padding: 0.25rem;
+        max-width: 160px;
     }
 
     .nav-logo-core {
-        padding: 0.3rem 0.6rem;
+        padding: 0.4rem 0.8rem;
     }
 
     .nav-logo-title {
-        font-size: 0.85rem;
-        letter-spacing: 0.1rem;
+        font-size: 1.1rem;
+        letter-spacing: 0.15rem;
     }
 
     .mobile-header h2 {
