@@ -1,5 +1,4 @@
-#errorrSpiderVideoBox .errorr-video-label,
-#errorrSpiderVideoBox .errorr-products-click {
+#errorrSpiderVideoBox .errorr-video-label {
     background-image: linear-gradient(120deg, #ef4444, #3b82f6, #8b5cf6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -7,26 +6,6 @@
     color: transparent;
 }
 
-#errorrSpiderVideoBox .errorr-products-click {
-    position: relative;
-    border-color: rgba(99, 102, 241, 0.4);
-    background: transparent;
-    overflow: hidden;
-}
-
-#errorrSpiderVideoBox .errorr-products-click::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: rgba(248, 250, 252, 0.95);
-    z-index: -1;
-    transition: background 0.3s ease;
-}
-
-#errorrSpiderVideoBox:hover .errorr-products-click::before {
-    background: rgba(248, 250, 252, 1);
-}
 /* Reset and Base Styles */
 * {
     margin: 0;
