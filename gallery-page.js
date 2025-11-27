@@ -213,9 +213,18 @@ function displayCategoryGallery() {
     const emptyState = document.getElementById('emptyState');
     const categoryTitle = document.getElementById('categoryTitle');
     const categoryDescription = document.getElementById('categoryDescription');
+    const categoryInstruction = document.getElementById('categoryInstruction');
     const galleryDescriptionBlock = document.getElementById('galleryDescriptionBlock');
 
     const lang = getCurrentLanguage();
+
+    const instructionText = lang === 'en'
+        ? 'Click on any photo to view the full image.'
+        : 'جهت مشاهده کامل عکس روی عکس کلیک کنید.';
+    if (categoryInstruction) {
+        categoryInstruction.textContent = instructionText;
+        categoryInstruction.style.display = 'block';
+    }
 
     if (category === 'all') {
         categoryTitle.textContent = lang === 'en' ? 'Portfolio Gallery' : 'گالری نمونه کارها';
@@ -252,12 +261,14 @@ function displayCategoryGallery() {
     }
 
     if (galleryGrid) {
+        const viewFullLabel = lang === 'en' ? 'View full image' : 'مشاهده کامل عکس';
         galleryGrid.style.display = 'grid';
         galleryGrid.innerHTML = itemsForCategory.map((item, index) => `
             <div class="gallery-item" data-category="${item.category}" data-index="${index}" data-image="${item.image}" data-title="${item.title}">
                 <img class="gallery-image loading" src="${GALLERY_IMAGE_PLACEHOLDER}" data-src="${item.image}" alt="${item.title}" loading="lazy" decoding="async">
                 <div class="gallery-item-overlay">
                     <div class="gallery-item-title">${item.title}</div>
+                    <div class="gallery-item-action">${viewFullLabel}</div>
                 </div>
             </div>
         `).join('');

@@ -1677,7 +1677,9 @@ body.lang-en .footer-content {
     height: 100%;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.4rem;
     padding: 1.5rem;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -1691,6 +1693,22 @@ body.lang-en .footer-content {
     color: white;
     font-weight: 600;
     font-size: 1.1rem;
+}
+
+.gallery-item-action {
+    color: #fbbf24;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.gallery-item-action::after {
+    content: '\f061';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 0.85rem;
 }
 
 .gallery-loading {
@@ -3476,6 +3494,17 @@ body.lang-en .footer-content {
     border-color: #2563eb;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.category-instruction {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    color: #fbbf24;
+    font-weight: 500;
+}
+
+html[lang="en"] .category-instruction {
+    font-family: "Poppins", "Segoe UI", sans-serif;
 }
 
 /* Responsive adjustments for nav-actions */
