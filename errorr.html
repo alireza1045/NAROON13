@@ -174,9 +174,15 @@
     <!-- Spider RGB Product Introduction -->
     <section class="spider-rgb-section">
         <div class="container">
-            <div class="spider-rgb-box">
-                <h2 class="spider-rgb-title">معرفی محصول: Spider RGB</h2>
-                <div class="spider-rgb-content">
+            <div class="spider-rgb-box" id="spiderRgbBox" aria-expanded="false">
+                <div class="spider-rgb-header" id="spiderRgbHeader" role="button" tabindex="0" aria-controls="spiderRgbContent" aria-expanded="false">
+                    <h2 class="spider-rgb-title">معرفی محصول: Spider RGB</h2>
+                    <div class="spider-rgb-toggle-hint">
+                        <span data-fa="برای مشاهده توضیحات کلیک کنید" data-en="Click to view details">برای مشاهده توضیحات کلیک کنید</span>
+                        <i class="fas fa-chevron-down spider-rgb-toggle-icon" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="spider-rgb-content" id="spiderRgbContent" aria-hidden="true">
                     <p class="spider-rgb-intro">محصول Spider RGB اولین نمونه از یک سیستم نورپردازی هوشمند است که تاکنون در هیچ جای دنیا ساخته نشده است. این دستگاه ترکیبی از طراحی آینده‌نگر، تکنولوژی پویا و کنترل کامل نور است و تجربه‌ای می‌سازد که نه‌تنها محیط را روشن می‌کند، بلکه آن را زنده و متحرک می‌سازد.</p>
                     
                     <p>Spider RGB دارای یک کنترلر اختصاصی است که به‌وسیله آن می‌توانید رنگ نورها، حالت‌های رقص نور و افکت‌های نمایشی را تغییر دهید. این دستگاه به یک سنسور حساس به صدا مجهز شده که با دریافت کوچک‌ترین ارتعاش صوتی فعال می‌شود و نورپردازی هماهنگ با موسیقی، گفت‌وگو یا هر صدای محیط ایجاد می‌کند.</p>
@@ -208,6 +214,7 @@
     <!-- ERRORR Gallery Section -->
     <section class="errorr-gallery-page">
         <div class="container">
+            <h2 class="errorr-gallery-title" data-fa="گالری محصولات ERRORR" data-en="ERRORR Products Gallery">گالری محصولات ERRORR</h2>
             <div id="errorr-gallery-container" class="errorr-gallery-container">
                 <div class="errorr-loading">
                     <i class="fas fa-spinner fa-spin"></i>
@@ -261,6 +268,9 @@
             const errorrModal = document.getElementById('errorrVideoModal');
             const errorrVideo = document.getElementById('errorrVideoPlayer');
             const errorrClose = document.querySelector('.errorr-video-modal-close');
+            const spiderBox = document.getElementById('spiderRgbBox');
+            const spiderHeader = document.getElementById('spiderRgbHeader');
+            const spiderContent = document.getElementById('spiderRgbContent');
             
             if (errorrSpiderBox && errorrModal && errorrVideo) {
                 // باز کردن modal با کلیک روی باکس
@@ -294,6 +304,28 @@
                 document.addEventListener('keydown', function(e) {
                     if (e.key === 'Escape' && errorrModal.classList.contains('active')) {
                         closeModal();
+                    }
+                });
+            }
+
+            if (spiderBox && spiderHeader && spiderContent) {
+                const toggleSpiderContent = () => {
+                    const isOpen = !spiderBox.classList.contains('open');
+                    spiderBox.classList.toggle('open', isOpen);
+                    spiderBox.setAttribute('aria-expanded', isOpen);
+                    spiderHeader.setAttribute('aria-expanded', isOpen);
+                    spiderContent.setAttribute('aria-hidden', (!isOpen).toString());
+                };
+
+                spiderHeader.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    toggleSpiderContent();
+                });
+
+                spiderHeader.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        toggleSpiderContent();
                     }
                 });
             }
