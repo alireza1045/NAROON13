@@ -79,6 +79,25 @@ let galleryImageObserver = null;
 let galleryManifestCache = null;
 let currentGalleryLang = getCurrentLanguage();
 
+// Images that should NOT appear in the "all" view, only in their own category
+const excludedFromAllView = new Set([
+    // Exhibition – new series
+    'images/exhibition/photo_8_2025-11-27_16-32-13.webp',
+    // Neon Flex – new series
+    'images/neon-plex/photo_1_2025-11-27_16-32-13.webp',
+    'images/neon-plex/photo_2_2025-11-27_16-32-13.webp',
+    'images/neon-plex/photo_3_2025-11-27_16-32-13.webp',
+    'images/neon-plex/photo_4_2025-11-27_16-32-13.webp',
+    'images/neon-plex/photo_5_2025-11-27_16-32-13.webp',
+    'images/neon-plex/photo_6_2025-11-27_16-32-13.webp',
+    'images/neon-plex/photo_7_2025-11-27_16-32-13.webp',
+    'images/neon-plex/photo_8_2025-11-27_16-32-13.webp'
+]);
+
+function shouldIncludeInAllView(item) {
+    return !excludedFromAllView.has(item.image);
+}
+
 function buildGalleryData(manifest) {
     galleryManifestCache = manifest || galleryManifestCache;
     currentGalleryLang = getCurrentLanguage();
@@ -106,7 +125,9 @@ function buildGalleryData(manifest) {
         }
 
         galleryDataByCategory[category] = items;
-        galleryDataAll.push(...items);
+
+        const itemsForAll = items.filter(shouldIncludeInAllView);
+        galleryDataAll.push(...itemsForAll);
     });
 
     manifestLoaded = true;
@@ -198,9 +219,12 @@ async function loadGalleryManifest() {
     }
 }
 
-function getCategoryFromURL() {
+function getCategoryContext() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('category') || 'all';
+    const rawCategory = urlParams.get('category');
+    const isDefaultView = !rawCategory || rawCategory === 'all';
+    const value = isDefaultView ? 'exhibition' : rawCategory;
+    return { value, isDefaultView };
 }
 
 function displayCategoryGallery() {
@@ -208,7 +232,7 @@ function displayCategoryGallery() {
         return;
     }
 
-    const category = getCategoryFromURL();
+    const { value: category, isDefaultView } = getCategoryContext();
     const galleryGrid = document.getElementById('categoryGallery');
     const emptyState = document.getElementById('emptyState');
     const categoryTitle = document.getElementById('categoryTitle');
@@ -226,7 +250,7 @@ function displayCategoryGallery() {
         categoryInstruction.style.display = 'block';
     }
 
-    if (category === 'all') {
+    if (isDefaultView) {
         categoryTitle.textContent = lang === 'en' ? 'Portfolio Gallery' : 'گالری نمونه کارها';
         categoryDescription.textContent = lang === 'en' ? 'Showcase of our successful projects' : 'نمونه‌هایی از پروژه‌های موفق ما';
         if (galleryDescriptionBlock) {
@@ -507,13 +531,12 @@ function initNavLogoSlideshow() {
     }
 
     // Get current category from URL
-    const category = getCategoryFromURL();
+    const { value: category } = getCategoryContext();
     
     // Get manifest
     const manifest = window.__GALLERY_MANIFEST__ || galleryManifestCache || {};
     
-    // If category is 'all', use channel-letters as default
-    const categoryKey = category === 'all' ? 'channel-letters' : category;
+    const categoryKey = category;
     
     // Get images for this category
     const categoryImages = manifest[categoryKey] || [];
